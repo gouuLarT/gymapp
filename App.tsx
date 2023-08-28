@@ -1,9 +1,10 @@
-import { View, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
 import { NativeBaseProvider } from 'native-base'
 
 import { THEME } from './src/theme';
 import { Loading } from '@components/loading';
+import { SignIn } from '@screens/signIn';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -18,7 +19,7 @@ export default function App() {
       barStyle='light-content'
       backgroundColor='transparent'
       />
-      {<Loading />}
+      {fontsLoaded ? <SignIn /> : <Loading />}
     </NativeBaseProvider>
   );
 }
