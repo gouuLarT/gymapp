@@ -6,7 +6,7 @@ import { Input } from "@components/Input";
 
 export function SignIn() {
     return (
-        <VStack flex={1} bg="gray.700">
+        <VStack flex={1} bg="gray.700" px={10}>
             <Image
                 source={backgroundImg}
                 alt="people training"
@@ -28,8 +28,15 @@ export function SignIn() {
                 </Heading>
             </Center>
 
-            <Input placeholder="E-mail"/>
-            <Input placeholder="Passowrd"/>
+            <Input 
+            placeholder="E-mail" 
+            keyboardType="email-address"
+            autoCapitalize="none"
+            />
+            <Input 
+            placeholder="Passowrd" 
+            secureTextEntry
+            />
 
         </VStack>
     )
