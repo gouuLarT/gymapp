@@ -4,7 +4,7 @@ import { NativeBaseProvider } from 'native-base'
 
 import { THEME } from './src/theme';
 import { Loading } from '@components/loading';
-import { SignIn } from '@screens/signIn';
+import { SignUp } from '@screens/signUp';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -19,7 +19,7 @@ export default function App() {
       barStyle='light-content'
       backgroundColor='transparent'
       />
-      {fontsLoaded ? <SignIn /> : <Loading />}
+      {fontsLoaded ? <SignUp /> : <Loading />}
     </NativeBaseProvider>
   );
 }
