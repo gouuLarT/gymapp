@@ -40,7 +40,8 @@ export function SignIn() {
             />
 
             <Button title="Access"/> 
-            
+
+            <Button title="Register" variant='outline'/> 
 
         </VStack>
     )
