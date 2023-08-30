@@ -17,7 +17,7 @@ export function SignUp() {
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
             <VStack flex={1} px={10}>
-
+        
                 <Image
                     source={backgroundImg}
                     defaultSource={backgroundImg}
