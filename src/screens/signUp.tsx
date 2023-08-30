@@ -20,6 +20,7 @@ export function SignUp() {
 
                 <Image
                     source={backgroundImg}
+                    defaultSource={backgroundImg}
                     alt="people training"
                     position="absolute"
                     resizeMode="contain"
