@@ -1,4 +1,4 @@
-import { VStack, Image, Text, Center, Heading } from "native-base";
+import { VStack, Image, Text, Center, Heading, ScrollView } from "native-base";
 
 import backgroundImg from "@assets/background.png";
 import LogoSvg from "@assets/logo.svg"
@@ -7,7 +7,9 @@ import { Button } from "@components/button";
 
 export function SignIn() {
     return (
+        <ScrollView contentContainerStyle={{ flexGrow: 1}} showsVerticalScrollIndicator={false}>
         <VStack flex={1} bg="gray.700" px={10}>
+
             <Image
                 source={backgroundImg}
                 alt="people training"
@@ -27,22 +29,38 @@ export function SignIn() {
                 <Heading color="gray.100" fontSize="xl" mb={6} fontFamily="heading">
                     Access your account
                 </Heading>
+
+
+                <Input
+                    placeholder="E-mail"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                />
+                <Input
+                    placeholder="Passowrd"
+                    secureTextEntry
+                />
+
+                <Button title="Access" />
             </Center>
 
-            <Input 
-            placeholder="E-mail" 
-            keyboardType="email-address"
-            autoCapitalize="none"
-            />
-            <Input 
-            placeholder="Passowrd" 
-            secureTextEntry
-            />
+            <Center marginTop={24}>
 
-            <Button title="Access"/> 
+                <Text 
+                color='gray.100' 
+                fontSize="sm" 
+                marginBottom={3} 
+                fontFamily="body">
+                    Still don't have access?
+                </Text>
 
-            <Button title="Register" variant='outline'/> 
+                <Button 
+                title="Register" 
+                variant='outline' />
+
+            </Center>
 
         </VStack>
+        </ScrollView>
     )
 }
