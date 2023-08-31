@@ -1,4 +1,5 @@
 import { Pressable, Text } from "native-base";
+import { useHover } from "native-base/lib/typescript/components/primitives";
 
 type Props = {
     name: string;
@@ -15,6 +16,10 @@ export function Group({name}: Props){
         justifyContent="center"
         alignItems="center"
         overflow="hidden"
+        _pressed={{
+            borderColor: 'green.500',
+            borderWidth: 1,
+        }}
         >
         <Text 
         color="gray.200"
