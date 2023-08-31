@@ -1,11 +1,11 @@
-import { Pressable, Text } from "native-base";
-import { useHover } from "native-base/lib/typescript/components/primitives";
+import { Pressable, Text, IPressableProps } from "native-base";
 
-type Props = {
+type Props  = IPressableProps & {
     name: string;
+    isActive: boolean;
 }
 
-export function Group({name}: Props){
+export function Group({name, isActive, ...rest}: Props){
     return(
         <Pressable 
         bg="gray.600"
@@ -16,13 +16,16 @@ export function Group({name}: Props){
         justifyContent="center"
         alignItems="center"
         overflow="hidden"
+        isPressed={isActive}
         _pressed={{
             borderColor: 'green.500',
             borderWidth: 1,
         }}
+        
+        {...rest}
         >
         <Text 
-        color="gray.200"
+        color={isActive ? "green.500" : "gray.200"}
         textTransform="uppercase"
         fontSize="xs"
         fontWeight="bold"
