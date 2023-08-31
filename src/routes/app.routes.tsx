@@ -1,11 +1,21 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-const { Navigator, Screen } = createBottomTabNavigator()
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 
 import { Exercise } from '@screens/exercise'
 import { History } from '@screens/history'
 import { Home } from '@screens/home'
 import { Profile } from '@screens/profile'
 
+type AppRoutes = {
+    home: undefined
+    exercise: undefined
+    history: undefined
+    profile: undefined
+}
+
+export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>
+
+const { Navigator, Screen } = createBottomTabNavigator<AppRoutes>()
 
 export function AppRoutes(){
     return(

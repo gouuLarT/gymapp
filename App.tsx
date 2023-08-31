@@ -5,6 +5,7 @@ import { NativeBaseProvider } from 'native-base'
 import { THEME } from './src/theme';
 import { Loading } from '@components/loading';
 import { Routes } from './src/routes';
+
 import { Profile } from '@screens/profile';
 
 export default function App() {
@@ -20,7 +21,7 @@ export default function App() {
       barStyle='light-content'
       backgroundColor='transparent'
       />
-      {fontsLoaded ? <Profile /> : <Loading />}
+      {fontsLoaded ? <Routes /> : <Loading />}
     </NativeBaseProvider>
   );
 }
