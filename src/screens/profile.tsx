@@ -1,43 +1,53 @@
-import { VStack, Image, Text, Center, Heading, ScrollView } from "native-base";
+import { VStack, Image, Text, Center, Heading, ScrollView, HStack } from "native-base";
 import { Button } from "@components/button";
 import { Input } from "@components/Input";
-    
-export function Profile(){
+import { UserPhoto } from "@components/userPhoto";
+
+export function Profile() {
 
 
-    return(
-        <ScrollView contentContainerStyle={{ flexGrow: 1}} showsVerticalScrollIndicator={false}>
+    return (
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
             <VStack flex={1} p={10} bg='gray.900'>
+                <HStack>
+                    <UserPhoto
+                        size={40}
+                        source={{ uri: 'https://github.com/gouuLarT.png' }}
+                        alt="User's image"
+                        mr={4}
+                        borderColor="gray.200"
+                    />
+                </HStack>
                 <Center marginTop={10}>
                     <Input
-                    bg='gray.500'
+                        bg='gray.500'
                     />
                     <Input
-                    bg='gray.500'
+                        bg='gray.500'
                     />
                 </Center>
-                <Heading 
-                color="gray.100" 
-                fontSize="xl" 
-                mb={6} 
-                fontFamily="heading">
+                <Heading
+                    color="gray.100"
+                    fontSize="xl"
+                    mb={6}
+                    fontFamily="heading">
                     Change password
                 </Heading>
                 <Center>
                     <Input
-                    placeholder="Old password"
-                    secureTextEntry
-                    bg='gray.500'
+                        placeholder="Old password"
+                        secureTextEntry
+                        bg='gray.500'
                     />
                     <Input
-                    placeholder="New password"
-                    secureTextEntry
-                    bg='gray.500'
+                        placeholder="New password"
+                        secureTextEntry
+                        bg='gray.500'
                     />
                 </Center>
 
-                <Button 
-                title="Update"
+                <Button
+                    title="Update"
                 />
 
 

@@ -1,12 +1,10 @@
-import { View, Text } from 'react-native'
-import { Center } from 'native-base'
+import { ScreenHeader } from '@components/screenHeader'
+import { VStack } from 'native-base'
 
 export function History(){
     return(
-        <View>
-            <Center>
-                <Text>History</Text>
-            </Center>
-        </View>
+            <VStack>
+                <ScreenHeader title='History' />
+            </VStack>
     )
 }
