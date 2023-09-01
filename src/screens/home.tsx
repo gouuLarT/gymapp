@@ -1,6 +1,6 @@
 import { Group } from '@components/group'
 import { HomeHeader } from '@components/homeHeader'
-import { FlatList, HStack, VStack } from 'native-base'
+import { FlatList, HStack, Heading, VStack, Text } from 'native-base'
 import { useState } from 'react'
 
 export function Home() {
@@ -18,18 +18,29 @@ export function Home() {
                         name={item}
                         isActive={groupSelected === item}
                         onPress={() => setGroupSelected(item)}
-                        
+
                     />
                 )}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    _contentContainerStyle={{
-                        px: 8
-                    }}
-                    maxH={10}
-                    my={10}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                _contentContainerStyle={{
+                    px: 8
+                }}
+                maxH={10}
+                my={10}
             />
 
+            <VStack flex={1} px={8} mb={5}>
+            <HStack justifyContent="space-between">
+                <Heading color="gray.200" fontSize="md">
+                    Exercises
+                </Heading>
+
+                <Text color="gray.200" fontSize="sm">
+                    4
+                </Text>
+            </HStack>
+            </VStack>
 
         </VStack>
     )
