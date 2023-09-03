@@ -1,4 +1,4 @@
-import { HStack, Heading, Icon, VStack, Text } from 'native-base'
+import { HStack, Heading, Icon, VStack, Text, Image } from 'native-base'
 import { TouchableOpacity } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
@@ -16,6 +16,7 @@ export function Exercise() {
     return (
         <VStack flex={1}>
             <VStack px={8} bg="gray.600" pt={12}>
+
                 <TouchableOpacity onPress={handleGoBack}>
                     <Icon
                         as=
@@ -46,7 +47,21 @@ export function Exercise() {
                         </Text>
                     </HStack>
                 </HStack>
+
             </VStack>
+            <VStack p={8}>
+                <Image
+                    w='full'
+                    h={80}
+                    source={{ uri: "https://blogeducacaofisica.com.br/wp-content/uploads/2017/07/membros-superiores.jpg" }}
+                    alt='Exercise name'
+                    mb={3}
+                    resizeMode='cover'
+                    rounded="lg"
+                />
+            </VStack>
+
+
         </VStack>
     )
 }
