@@ -5,7 +5,13 @@ import { UserPhoto } from "@components/userPhoto";
 import { ScreenHeader } from "@components/screenHeader";
 import { TouchableOpacity } from "react-native";
 
+import * as ImagePicker from 'expo-image-picker'
+
 export function Profile() {
+
+    async function handleUserPhotoSelect(){
+        await ImagePicker.launchImageLibraryAsync();
+    }
 
 
     return (
@@ -21,7 +27,7 @@ export function Profile() {
                         borderColor="gray.200"
                         mb={2}
                     />
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={handleUserPhotoSelect}>
                         <Text color="green.500" fontWeight="bold" fontSize="md">
                             Change picture
                         </Text>
