@@ -14,22 +14,32 @@ const PHOTO_SIZE = 33;
 export function Profile() {
 
   const [photoIsLoading, setPhotoIsLoading] = useState(false);
-  const [userPhoto, setUserPhoto] = useState('https://github.com/gouuLarT.png')
+  const [userPhoto, setUserPhoto] = useState('https://github.com/gouuLarT.png');
 
   async function handleUserPhotoSelected(){
-    const photoSelected = await ImagePicker.launchImageLibraryAsync({
+    setPhotoIsLoading(true);
+    
+    try {
+      const photoSelected = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         quality: 1,
         aspect: [4, 4],
         allowsEditing: true,
-        base64: true
-    });
-    
-    if (photoSelected.canceled){
+      });
+  
+      if(photoSelected.canceled) {
         return;
-    }
+      }
 
-    setUserPhoto(photoSelected.assets[0].uri);
+      if(photoSelected.assets[0].uri) {
+        setUserPhoto(photoSelected.assets[0].uri);
+      }
+  
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setPhotoIsLoading(false)
+    }
   }
  
   return (
