@@ -1,73 +1,102 @@
-import { VStack, Image, Text, Center, Heading, ScrollView, HStack } from "native-base";
-import { Button } from "@components/button";
-import { Input } from "@components/Input";
-import { UserPhoto } from "@components/userPhoto";
-import { ScreenHeader } from "@components/screenHeader";
-import { TouchableOpacity } from "react-native";
+import { useState } from 'react';
+import { TouchableOpacity } from 'react-native';
+import { Center, ScrollView, VStack, Skeleton, Text, Heading } from 'native-base';
+import * as ImagePicker from 'expo-image-picker';
 
-import * as ImagePicker from 'expo-image-picker'
+import { ScreenHeader } from '@components/screenHeader';
+import { UserPhoto } from '@components/userPhoto';
+import { Input } from '@components/Input';
+import { Button } from '@components/button';
+
+
+const PHOTO_SIZE = 33;
 
 export function Profile() {
 
-    async function handleUserPhotoSelect(){
-        await ImagePicker.launchImageLibraryAsync();
+  const [photoIsLoading, setPhotoIsLoading] = useState(false);
+  const [userPhoto, setUserPhoto] = useState('https://github.com/gouuLarT.png')
+
+  async function handleUserPhotoSelected(){
+    const photoSelected = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 1,
+        aspect: [4, 4],
+        allowsEditing: true,
+        base64: true
+    });
+    
+    if (photoSelected.canceled){
+        return;
     }
 
+    setUserPhoto(photoSelected.assets[0].uri);
+  }
+ 
+  return (
+    <VStack flex={1}>
+      <ScreenHeader title='Perfil' />
 
-    return (
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
-            <ScreenHeader title="Profile" />
+      <ScrollView contentContainerStyle={{ paddingBottom: 36 }}>
+        <Center mt={6} px={10}>
+          {
+            photoIsLoading ?
+              <Skeleton 
+                w={PHOTO_SIZE}
+                h={PHOTO_SIZE}
+                rounded="full"
+                startColor="gray.500"
+                endColor="gray.400"
+              />
+            :
+              <UserPhoto 
+                source={{ uri: userPhoto }}
+                alt="Foto do usuário"
+                size={PHOTO_SIZE}
+              />
+          }
+          
+          <TouchableOpacity onPress={handleUserPhotoSelected}>
+            <Text color="green.500" fontWeight="bold" fontSize="md" mt={2} mb={8}>
+              Alterar Foto
+            </Text>
+          </TouchableOpacity>
 
-            <VStack flex={1} p={6} bg='gray.900'>
-                <Center>
-                    <UserPhoto
-                        size={33}
-                        source={{ uri: 'https://github.com/gouuLarT.png' }}
-                        alt="User's image"
-                        borderColor="gray.200"
-                        mb={2}
-                    />
-                    <TouchableOpacity onPress={handleUserPhotoSelect}>
-                        <Text color="green.500" fontWeight="bold" fontSize="md">
-                            Change picture
-                        </Text>
-                    </TouchableOpacity>
-                </Center>
-                <Center marginTop={15}>
-                    <Input
-                        bg='gray.500'
-                        placeholder="E-mail"
-                    />
-                    <Input
-                        bg='gray.500'
-                        placeholder="Passowrd"
-                    />
-                </Center>
-                <Heading
-                    color="gray.100"
-                    fontSize="xl"
-                    mb={6}
-                    fontFamily="heading">
-                    Change password
-                </Heading>
-                <Center>
-                    <Input
-                        placeholder="Old password"
-                        secureTextEntry
-                        bg='gray.500'
-                    />
-                    <Input
-                        placeholder="New password"
-                        secureTextEntry
-                        bg='gray.500'
-                    />
-                </Center>
+          <Input 
+            bg="gray.600" 
+            placeholder='Nome' 
+          />
 
-                <Button
-                    title="Update"
-                />
+          <Input 
+            bg="gray.600" 
+            placeholder="E-mail"
+            isDisabled
+          />
+        
+          <Heading color="gray.200" fontSize="md" mb={2} alignSelf="flex-start" mt={12}>
+            Alterar senha
+          </Heading>
 
-            </VStack>
-        </ScrollView>
-    )
+          <Input 
+            bg="gray.600"
+            placeholder="Senha antiga"
+            secureTextEntry
+          />
+
+          <Input 
+            bg="gray.600"
+            placeholder="Nova senha"
+            secureTextEntry
+          />
+
+          <Input 
+            bg="gray.600"
+            placeholder="Confirme a nova senha"
+            secureTextEntry
+          />
+
+          <Button title="Atualizar" mt={4} />
+        </Center>
+      </ScrollView>
+    </VStack>
+  );
 }
