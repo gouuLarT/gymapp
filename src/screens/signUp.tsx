@@ -4,30 +4,24 @@ import backgroundImg from "@assets/background.png";
 import LogoSvg from "@assets/logo.svg"
 import { Input } from "@components/Input";
 import { Button } from "@components/button";
-import { useNavigation } from "@react-navigation/native"; 
-import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { useForm, Controller } from 'react-hook-form'
 
 export function SignUp() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [passwordConfirm, setPasswordConfirm] = useState('');
-
-
     const navigation = useNavigation();
+    const { control } = useForm();
 
-    function handleGoBack(){
+    function handleGoBack() {
         navigation.goBack()
     }
 
-    function handleSignUp(){
-
+    function handleSignUp() {
     }
 
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
             <VStack flex={1} px={10}>
-        
+
                 <Image
                     source={backgroundImg}
                     defaultSource={backgroundImg}
@@ -36,52 +30,86 @@ export function SignUp() {
                     resizeMode="contain"
                 />
 
-                <Center 
-                my={24}>
+                <Center
+                    my={24}>
                     <LogoSvg />
 
-                    <Text 
-                    color={"gray.100"} 
-                    fontSize="sm">
+                    <Text
+                        color={"gray.100"}
+                        fontSize="sm">
                         Trainee your mind and body
                     </Text>
                 </Center>
 
                 <Center>
-                    <Heading 
-                    color="gray.100" 
-                    fontSize="xl"
-                    mb={10} 
-                    fontFamily="heading">
-                    
+                    <Heading
+                        color="gray.100"
+                        fontSize="xl"
+                        mb={10}
+                        fontFamily="heading">
+
                         Access your account
                     </Heading>
 
-                    <Input
-                        placeholder="Name"
-                        onChangeText={setName}
+                    <Controller
+                        control={control}
+                        name="name"
+                        render={({
+                            field: { onChange, value } }) => (
+                            <Input
+                                placeholder="Name"
+                                onChangeText={onChange}
+                                value={value}
+                            />
+                        )}
                     />
 
-                    <Input
-                        placeholder="E-mail"
-                        keyboardType="email-address"
-                        autoCapitalize="none"
-                        onChangeText={setEmail}
-                    />
-                    <Input
-                        placeholder="Password"
-                        secureTextEntry
-                        onChangeText={setPassword}
-                    />
-                    <Input 
-                        placeholder="Confirm the password"
-                        secureTextEntry 
-                        onChangeText={setPasswordConfirm}
+                    <Controller
+                        control={control}
+                        name="email"
+                        render={({
+                            field: { onChange, value } }) => (
+                            <Input
+                                placeholder="E-mail"
+                                keyboardType="email-address"
+                                autoCapitalize="none"
+                                onChangeText={onChange}
+                                value={value}
+                            />
+                        )}
                     />
 
-                    <Button 
-                    title="Register and access" 
-                    onPress={handleSignUp}
+                    <Controller
+                        control={control}
+                        name="email"
+                        render={({
+                            field: { onChange, value } }) => (
+                            <Input
+                                placeholder="Password"
+                                secureTextEntry
+                                onChangeText={onChange}
+                                value={value}
+                            />
+                        )}
+                    />
+
+                    <Controller
+                        control={control}
+                        name="email"
+                        render={({
+                            field: { onChange, value } }) => (
+                            <Input
+                                placeholder="Confirm the password"
+                                secureTextEntry
+                                onChangeText={onChange}
+                                value={value}
+                            />
+                        )}
+                    />
+
+                    <Button
+                        title="Register and access"
+                        onPress={handleSignUp}
                     />
 
                 </Center>
