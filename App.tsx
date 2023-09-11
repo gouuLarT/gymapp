@@ -6,22 +6,24 @@ import { THEME } from './src/theme';
 import { Loading } from '@components/loading';
 import { Routes } from './src/routes';
 
-import { Profile } from '@screens/profile';
+import { AuthContextProvider } from '@contexts/AuthContexts';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
     Roboto_700Bold
   })
-  
+
   return (
     <NativeBaseProvider theme={THEME} >
       <StatusBar
-      translucent
-      barStyle='light-content'
-      backgroundColor='transparent'
+        translucent
+        barStyle='light-content'
+        backgroundColor='transparent'
       />
-      {fontsLoaded ? <Routes /> : <Loading />}
+      <AuthContextProvider>
+        {fontsLoaded ? <Routes /> : <Loading />}
+      </AuthContextProvider>
     </NativeBaseProvider>
   );
 }
