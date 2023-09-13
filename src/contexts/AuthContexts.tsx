@@ -4,6 +4,7 @@ import { storageAuthTokenSave, storageAuthTokenGet, storageAuthTokenRemove } fro
 import { storageUserGet, storageUserRemove, storageUserSave } from '@storage/storageUser';
 
 import { api } from '@services/api';
+
 import { UserDTO } from "@dtos/UserDTO";
 
 export type AuthContextDataProps = {
@@ -26,7 +27,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
   async function userAndTokenUpdate(userData: UserDTO, token: string) {
     api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
+ 
     setUser(userData);
   }
 
